@@ -1,38 +1,28 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import { useRecipeStore } from './recipeStore';
 import EditRecipeForm from './EditRecipeForm';
 import DeleteRecipeButton from './DeleteRecipeButton';
+import { useParams } from 'react-router-dom';
 
-const RecipeDetails = ({ recipeId }) => {
-    const [isEditing, setIsEditing] = useState(false);
-    const recipe = useRecipeStore(state => 
-        state.recipes.find(recipe => recipe.id === recipeId)
-    );
+const RecipeDetails = () => {
+  const { id } = useParams(); 
+  const recipe = useRecipeStore((state) =>
+    state.recipes.find((recipe) => recipe.id === id)
+  );
 
-    if (!recipe) return <p>Recipe not found</p>;
+  if (!recipe.description) {
+    return <div>Recipe not found</div>;
+  }
 
-    const handleEditClick = () => {
-        setIsEditing(true);
-    };
-
-    const handleCloseEdit = () => {
-        setIsEditing(false);
-    };
-
-    return (
-        <div>
-            {isEditing ? (
-                <EditRecipeForm recipeId={recipeId} onClose={handleCloseEdit} />
-            ) : (
-                <>
-                    <h1>{recipe.title}</h1>
-                    <p>{recipe.description}</p>
-                    <button onClick={handleEditClick}>Edit</button>
-                    <DeleteRecipeButton recipeId={recipeId} />
-                </>
-            )}
-        </div>
-    );
+  return (
+    <div>
+      <h2>{recipe.title}</h2>
+      <p>{recipe.description}</p>
+      <EditRecipeForm recipe={recipe} />
+      <DeleteRecipeButton recipeId={id} />
+    </div>
+  );
 };
 
 export default RecipeDetails;
