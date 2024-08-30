@@ -12,7 +12,7 @@ const RegistrationForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!formData.username) {
-            alert("please enter Your Name");
+            alert("please enter Your username");
         }
         if (!formData.email) {
             alert("please Enter the right email");
@@ -25,10 +25,11 @@ const RegistrationForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="name-input">Enter Your UserName:</label>
+            <label htmlFor="username-input">Enter Your UserName:</label>
             <input 
             type="text"
             name="username"
+            id="username-input"
             value={formData.username}
             onChange={handleChange}
             />
@@ -36,6 +37,7 @@ const RegistrationForm = () => {
             <input 
             type="email"
             name="email"
+            id="email-input"
             value={formData.email}
             onChange={handleChange}
             />
@@ -43,6 +45,7 @@ const RegistrationForm = () => {
             <input 
             type="password"
             name="password"
+            id="password-input"
             value={formData.password}
             onChange={handleChange} 
             />
