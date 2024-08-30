@@ -1,7 +1,7 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import PostsComponent from './component/Postscomponent';
+import PostsComponent from './component/PostsComponent';
 import HomeComponent from './component/HomeComponent';
 // Create a QueryClient instance
 const queryClient = new QueryClient();
