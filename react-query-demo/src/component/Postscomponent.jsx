@@ -14,7 +14,7 @@ const PostsComponent = () => {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error loading data</div>;
 
-    return (
+   return (
         <div>
             <h1>Posts</h1>
             <button onClick={() => refetch()}>Refetch Posts</button>
