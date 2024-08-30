@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+    const [ errors, setErrors] = useState({ username: '', email: '', password: '' });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -10,17 +11,22 @@ const RegistrationForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { username, email, password } = formData; // Destructure here
-        if (!username) {
-            alert("Please enter your username");
+        const newErrors = { username: '', email: '', password: '' };
+
+        if (!formData.username) {
+            newErrors.username = "Please enter your username";
         }
-        if (!email) {
-            alert("Please enter a valid email address");
+        if (!formData.email) {
+            newErrors.email = "Please enter a valid email address";
         }
-        if (!password) {
-            alert("Please enter a password");
+        if (!formData.password) {
+            newErrors.password = "Please enter a password";
         }
+        if (newErrors.username || newErrors.email || newErrors.password) {
+            setErrors(newErrors);            
+        } else {
         console.log(formData);
+        }
     };
 
     const { username, email, password } = formData; // Destructure here for use in JSX
@@ -35,6 +41,8 @@ const RegistrationForm = () => {
                 value={username} // Use destructured value
                 onChange={handleChange}
             />
+            {errors.username && <p>{errors.username}</p>}
+
             <label htmlFor="email-input">Enter Your Email:</label>
             <input 
                 type="email"
@@ -43,6 +51,7 @@ const RegistrationForm = () => {
                 value={email} // Use destructured value
                 onChange={handleChange}
             />
+            {errors.email && <p>{errors.email}</p>}
             <label htmlFor="password-input">Enter Your Password:</label>
             <input 
                 type="password"
@@ -51,6 +60,7 @@ const RegistrationForm = () => {
                 value={password} // Use destructured value
                 onChange={handleChange} 
             />
+            {errors.password && <p>{errors.password}</p>}
             <button type="submit">Submit</button>
         </form>
     );
