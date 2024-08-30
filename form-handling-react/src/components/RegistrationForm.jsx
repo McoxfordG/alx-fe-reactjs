@@ -28,7 +28,7 @@ const RegistrationForm = () => {
             <label htmlFor="name-input">Enter Your UserName:</label>
             <input 
             type="text"
-            name="name"
+            name="username"
             value={formData.username}
             onChange={handleChange}
             />
