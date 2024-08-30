@@ -11,15 +11,16 @@ const RegistrationForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const { username, email, password } = formData; // Destructure here for use in JSX
         const newErrors = { username: '', email: '', password: '' };
 
-        if (!formData.username) {
+        if (!username) {
             newErrors.username = "Please enter your username";
         }
-        if (!formData.email) {
+        if (!email) {
             newErrors.email = "Please enter a valid email address";
         }
-        if (!formData.password) {
+        if (!password) {
             newErrors.password = "Please enter a password";
         }
         if (newErrors.username || newErrors.email || newErrors.password) {
