@@ -2,19 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
+// Fetch function for PostsComponent
 const fetchData = async () => {
     const res = await fetch('https://jsonplaceholder.typicode.com/posts');
     return res.json();
 };
 
-
+// PostsComponent that uses React Query
 const PostsComponent = () => {
     const { data, error, isLoading, refetch } = useQuery('fetchData', fetchData);
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error loading data</div>;
 
-   return (
+    return (
         <div>
             <h1>Posts</h1>
             <button onClick={() => refetch()}>Refetch Posts</button>
