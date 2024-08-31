@@ -3,17 +3,20 @@ import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 // Fetch function for PostsComponent
-const fetchData = async () => {
+const fetchPosts = async () => {
     const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+    if (!res.ok) {
+        throw new Error('Network response was not ok');
+    }
     return res.json();
 };
 
 // PostsComponent that uses React Query
 const PostsComponent = () => {
-    const { data, error, isLoading, refetch } = useQuery('fetchData', fetchData);
+    const { data, error, isLoading, refetch } = useQuery('fetchPosts', fetchPosts);
 
     if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error loading data</div>;
+    if (error) return <div>Error loading data: {error.message}</div>;
 
     return (
         <div>
