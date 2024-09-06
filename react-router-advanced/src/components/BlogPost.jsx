@@ -10,6 +10,7 @@ const BlogPost = () => {
         <Link to="user/1">User 1</Link>
         <Link to="user/2">User 2</Link>
       </nav>
+      <Link to="/">Home</Link>
     </>
   )
 };
