@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import AddTodoForm from '../../components/AddTodoForm';
+import AddTodoForm from '../components/AddTodoForm';
 
 test('renders AddTodoForm with input and button', () => {
   const mockAddTodo = jest.fn();
