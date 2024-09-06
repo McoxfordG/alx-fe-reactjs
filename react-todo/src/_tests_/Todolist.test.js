@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom'; // Use the main import path
-import TodoList from '../../components/Todolist';
+import TodoList from '../components/Todolist';
 
 test('renders TodoList component with initial todos', () => {
   render(<TodoList />);
