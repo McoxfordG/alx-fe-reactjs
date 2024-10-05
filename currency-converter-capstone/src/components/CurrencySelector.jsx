@@ -7,7 +7,7 @@ const CurrencySelector = ({ currencies, selectedCurrency, handleCurrencyChange }
       <select
         value={selectedCurrency}
         onChange={(e) => handleCurrencyChange(e.target.value)}
-        className="border p-2 w-full"
+        className="border p-2 w-full bg-green-200"
       >
         {currencies.map((currency) => (
           <option key={currency} value={currency}>

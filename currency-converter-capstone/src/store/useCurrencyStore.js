@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
+const MY_KEY = import.meta.env.VITE_API_KEY;
 const useCurrencyStore = create((set) => ({
   currencies: [],
   exchangeRate: null,
@@ -10,7 +11,7 @@ const useCurrencyStore = create((set) => ({
   convertedAmount: null,
   fetchRates: async (fromCurrency, toCurrency) => {
     try {
-      const response = await axios.get(`https://v6.exchangerate-api.com/v6/edee7c3e8d1be1da2712902e/latest/USD`);
+      const response = await axios.get(`https://v6.exchangerate-api.com/v6/${MY_KEY}/latest/${fromCurrency}`);
       set({
         currencies: Object.keys(response.data.conversion_rates),
         exchangeRate: response.data.conversion_rates[toCurrency],
