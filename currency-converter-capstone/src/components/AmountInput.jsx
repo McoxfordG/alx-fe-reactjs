@@ -8,7 +8,7 @@ const AmountInput = ({ amount, handleAmountChange }) => {
         type="number"
         value={amount}
         onChange={(e) => handleAmountChange(e.target.value)}
-        className="border p-2 w-full"
+        className="border bg-blue-400 p-2 w-full"
       />
     </div>
   );

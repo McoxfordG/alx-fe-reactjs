@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CurrencySelector from '../components/CurrencySelector';
 import AmountInput from '../components/AmountInput';
 import ConversionResult from '../components/ConversionResult';
@@ -19,13 +19,40 @@ function Converter() {
     calculateConvertedAmount,
   } = useCurrencyStore();
 
+  // State to manage theme (light or dark)
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   useEffect(() => {
     fetchRates(fromCurrency, toCurrency);
   }, [fromCurrency, toCurrency]);
 
+  // Toggle theme handler
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold text-center mb-4 font-roboto">Currency Converter</h1>
+    <div
+      className={`container mx-auto p-4 ${
+        isDarkMode
+          ? 'bg-gray-800 text-white sm:bg-white sm:text-black' // Ensure white background on mobile (sm) in dark mode
+          : 'bg-white text-black'
+      }`}
+    >
+      <div className="text-right mb-4">
+        {/* Toggle Button */}
+        <button
+          onClick={toggleTheme}
+          className={`px-4 py-2 rounded ${
+            isDarkMode ? 'bg-white text-black' : 'bg-black text-white'
+          } transition-colors duration-300`}
+        >
+          Toggle {isDarkMode ? 'Light' : 'Dark'} Mode
+        </button>
+      </div>
+      <h1 className="text-4xl font-bold text-center mb-4 font-roboto">
+        Currency Converter
+      </h1>
       {/* Currency Selectors */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <CurrencySelector
@@ -41,8 +68,8 @@ function Converter() {
       </div>
       {/* Amount Input */}
       <AmountInput amount={amount} handleAmountChange={setAmount} />
-      
-  {/* Button */}
+
+      {/* Button */}
       <div className="text-center mt-4">
         <button
           onClick={calculateConvertedAmount}
@@ -51,7 +78,8 @@ function Converter() {
           Convert
         </button>
       </div>
-    {/* Result */}  
+
+      {/* Result */}
       <ConversionResult
         amount={amount}
         convertedAmount={convertedAmount}
