@@ -6,7 +6,7 @@ test('renders AmountInput component and handles input change', () => {
   const handleAmountChange = jest.fn();
   render(<AmountInput amount={100} handleAmountChange={handleAmountChange} />);
 
-  const input = screen.getByRole('spinbutton'); // For input[type="number"]
+  const input = screen.getByRole('spinbutton'); 
   expect(input).toBeInTheDocument();
   expect(input.value).toBe('100');
 
