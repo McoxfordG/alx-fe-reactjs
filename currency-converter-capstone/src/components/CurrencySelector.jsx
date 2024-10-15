@@ -1,8 +1,8 @@
 import React from 'react';
-import { currencyCountryMap } from '../utils/currencyMap'; // Adjust the path as necessary
+import { currencyCountryMap } from '../utils/currencyMap'; 
 
 const CurrencySelector = ({ currencies, selectedCurrency, handleCurrencyChange }) => {
-  // Sort the currencies alphabetically based on country name
+
   const sortedCurrencies = currencies.sort((a, b) => {
     const countryA = currencyCountryMap[a]?.split(' ')[0] || a;
     const countryB = currencyCountryMap[b]?.split(' ')[0] || b;
